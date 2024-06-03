@@ -41,7 +41,7 @@ public class StartupHousekeeper implements ApplicationListener<ContextRefreshedE
     @Override
     public void onApplicationEvent(ContextRefreshedEvent event) {
 
-        tvModelRepo.deleteAll();
+        /*tvModelRepo.deleteAll();
         smartphoneModelRepo.deleteAll();
         vacuumCleanerModelRepo.deleteAll();
         fridgeModelRepo.deleteAll();
@@ -51,7 +51,7 @@ public class StartupHousekeeper implements ApplicationListener<ContextRefreshedE
 
         appliancesRepo.deleteAll();
 
-        vendorRepo.deleteAll();
+        vendorRepo.deleteAll();*/
 
         Vendor appleVendor = Vendor.builder()
                 .name("apple").

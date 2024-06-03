@@ -19,8 +19,8 @@ public class FilterUtil {
         return starterList.stream()
                 .filter(model -> (lowCameraNumber==null || ((SmartphoneModel)model).getCameraNumber() >= Integer.parseInt(lowCameraNumber)))
                 .filter(model -> (highCameraNumber==null || ((SmartphoneModel)model).getCameraNumber() <= Integer.parseInt(highCameraNumber)))
-                .filter(model -> (lowMemory==null || ((SmartphoneModel)model).getMemory() >= Integer.parseInt(lowMemory)))
-                .filter(model -> (highMemory==null || ((SmartphoneModel)model).getMemory() <= Integer.parseInt(highMemory)))
+                .filter(model -> (lowMemory==null || ((SmartphoneModel)model).getMemory() >= Double.parseDouble(lowMemory)))
+                .filter(model -> (highMemory==null || ((SmartphoneModel)model).getMemory() <= Double.parseDouble(highMemory)))
                 .collect(Collectors.toList());
     }
 
@@ -33,8 +33,8 @@ public class FilterUtil {
         String highDustContainerVolume = parameters.get("high_dust_container_volume");
 
         return starterList.stream()
-                .filter(model -> (lowDustContainerVolume==null || ((VacuumCleanerModel)model).getDustContainerVolume() >= Integer.parseInt(lowDustContainerVolume)))
-                .filter(model -> (highDustContainerVolume==null || ((VacuumCleanerModel)model).getDustContainerVolume() <= Integer.parseInt(highDustContainerVolume)))
+                .filter(model -> (lowDustContainerVolume==null || ((VacuumCleanerModel)model).getDustContainerVolume() >= Double.parseDouble(lowDustContainerVolume)))
+                .filter(model -> (highDustContainerVolume==null || ((VacuumCleanerModel)model).getDustContainerVolume() <= Double.parseDouble(highDustContainerVolume)))
                 .filter(model -> (lowModeNumber==null || ((VacuumCleanerModel)model).getModeNumber() >= Integer.parseInt(lowModeNumber)))
                 .filter(model -> (highModeNumber==null || ((VacuumCleanerModel)model).getModeNumber() <= Integer.parseInt(highModeNumber)))
                 .collect(Collectors.toList());
