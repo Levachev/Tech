@@ -1,0 +1,471 @@
+openapi: 3.0.0
+info: 
+  title: tech project api
+  version: 1.0.1
+servers:
+    - url: http://localhost:8080
+      description: dev server
+paths:
+
+  /admin/add/appliances:
+    put:
+      summary: метод для добавления вида техники
+      operationId: CreateAppliances
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Appliances'
+        required: true
+      responses:
+        '200':
+          description: 'succes'
+          
+  /admin/add/smartphone:
+    put:
+      summary: метод для добавления модели смартфона
+      operationId: CreateSmartphoneModel
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SmartphoneModel'
+        required: true
+      responses:
+        '200':
+          description: 'succes'
+          
+  /admin/add/computer:
+    put:
+      summary: метод для добавления модели компьютера
+      operationId: CreateComputerModel
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ComputerModel'
+        required: true
+      responses:
+        '200':
+          description: 'succes'
+          
+  /admin/add/tv:
+    put:
+      summary: метод для добавления модели телевизора
+      operationId: CreateTVModel
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TVModel'
+        required: true
+      responses:
+        '200':
+          description: 'succes'
+          
+  /admin/add/vacuum_cleaner:
+    put:
+      summary: метод для добавления модели пылесоса
+      operationId: CreateVacuumCleanerModel
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/VacuumCleanerModel'
+        required: true
+      responses:
+        '200':
+          description: 'succes'
+          
+  /admin/add/fridge:
+    put:
+      summary: метод для добавления модели холодильника
+      operationId: CreateFridgeModel
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FridgeModel'
+        required: true
+      responses:
+        '200':
+          description: 'succes'
+          
+  /models/sort/alphabet:
+    get:
+      summary: метод для получения моделей техники с сортировкой по названиям в алфавитном порядке
+      operationId: GetModelsSortedByName
+      responses:
+        '200':
+          description: 'succes'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AppliancesModels'
+            
+  /models/sort/price:
+    get:
+      summary: метод для получения моделей техники с сортировкой по цене
+      operationId: GetModelsSortedByPrice
+      responses:
+        '200':
+          description: 'succes'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AppliancesModels'
+         
+  /models/get:
+    get:
+      summary: метод для получения моделей техники по имени, с применением фильтров, указанных в параметрах запроса
+      operationId: GetModelsByName
+      parameters:
+          - name: name
+            in: query
+            description: name of appliances model 
+            schema:
+              type: string
+            required: true
+            
+          - name: appliance_name
+            in: query
+            description: name of appliances 
+            schema:
+              type: string
+            required: false
+            
+          - name: low_price
+            in: query
+            description: low price 
+            schema:
+              type: integer
+            required: false
+            
+          - name: high_price
+            in: query
+            description: high price
+            schema:
+              type: integer
+            required: false
+            
+          - name: color
+            in: query
+            description: color 
+            schema:
+              type: string
+            required: false
+          
+          - name: low_camera_number
+            in: query
+            description: low camera number 
+            schema:
+              type: integer
+            required: false
+          
+          - name: high_camera_number
+            in: query
+            description: high camera number 
+            schema:
+              type: integer
+            required: false
+          
+          - name: low_memory
+            in: query
+            description: low memory 
+            schema:
+              type: number
+            required: false
+          
+          - name: high_memory
+            in: query
+            description: high memory 
+            schema:
+              type: number
+            required: false
+          
+          - name: low_dust_container_volume
+            in: query
+            description: low dust container volume
+            schema:
+              type: number
+            required: false
+          
+          - name: high_dust_container_volume
+            in: query
+            description: high dust container volume 
+            schema:
+              type: number
+            required: false
+          
+          - name: low_mode_number
+            in: query
+            description: low mode number 
+            schema:
+              type: integer
+            required: false
+            
+          - name: high_mode_number
+            in: query
+            description: high mode number 
+            schema:
+              type: integer
+            required: false
+          
+          - name: low_door_number
+            in: query
+            description: low door number 
+            schema:
+              type: integer
+            required: false
+            
+          - name: high_door_number
+            in: query
+            description: high door number 
+            schema:
+              type: integer
+            required: false
+            
+          - name: compressor_type
+            in: query
+            description: compressor type
+            schema:
+              type: string
+            required: false
+          
+          - name: category
+            in: query
+            description: category
+            schema:
+              type: string
+            required: false
+          
+          - name: technology
+            in: query
+            description: technology
+            schema:
+              type: string
+            required: false
+          
+          - name: processor_type
+            in: query
+            description: processor type
+            schema:
+              type: string
+            required: false
+          
+      responses:
+        '200':
+          description: 'succes'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AppliancesModels'
+        '400':
+          description: 'Bad Request'
+
+components:
+  schemas:
+  
+    Appliances:
+      type: object
+      required:
+        - name
+        - canOrderOnline
+        - canInstallmentPlan
+      properties:
+        name:
+          type: string
+        canOrderOnline:
+          type: boolean
+        canInstallmentPlan:
+          type: boolean
+    
+    AppliancesModel:
+      type: object
+      required:
+        - name
+        - color
+        - size
+        - serialNumber
+        - price
+        - isHave
+        - processorType
+        - category
+        - specialParam1
+        - specialParam2
+      properties:
+        name:
+          type: string
+        color:
+          type: string
+        size:
+          type: integer
+        serialNumber:
+          type: string
+        price:
+          type: integer
+        isHave:
+          type: boolean
+        category:
+          type: string
+        processorType:
+          type: string
+        specialParam1:
+          type: string
+        specialParam2:
+          type: string
+          
+    AppliancesModels:
+      required:
+        - models
+      type: object
+      properties:
+        models:
+          type: array
+          items:
+            $ref: '#/components/schemas/AppliancesModel'
+            
+    ComputerModel:
+      type: object
+      required:
+        - name
+        - color
+        - size
+        - serialNumber
+        - price
+        - isHave
+        - processorType
+        - category
+      properties:
+        name:
+          type: string
+        color:
+          type: string
+        size:
+          type: integer
+        serialNumber:
+          type: string
+        price:
+          type: integer
+        isHave:
+          type: boolean
+        category:
+          type: string
+        processorType:
+          type: string
+          
+    SmartphoneModel:
+      type: object
+      required:
+        - name
+        - color
+        - size
+        - serialNumber
+        - price
+        - isHave
+        - cameraNumber
+        - memory
+      properties:
+        name:
+          type: string
+        color:
+          type: string
+        size:
+          type: integer
+        serialNumber:
+          type: string
+        price:
+          type: integer
+        isHave:
+          type: boolean
+        memory:
+          type: number
+        cameraNumber:
+          type: integer
+          
+    TVModel:
+      type: object
+      required:
+        - name
+        - color
+        - size
+        - serialNumber
+        - price
+        - isHave
+        - technology
+        - category
+      properties:
+        name:
+          type: string
+        color:
+          type: string
+        size:
+          type: integer
+        serialNumber:
+          type: string
+        price:
+          type: integer
+        isHave:
+          type: boolean
+        category:
+          type: string
+        technology:
+          type: string
+          
+    VacuumCleanerModel:
+      type: object
+      required:
+        - name
+        - color
+        - size
+        - serialNumber
+        - price
+        - isHave
+        - dustContainerVolume
+        - modeNumber
+      properties:
+        name:
+          type: string
+        color:
+          type: string
+        size:
+          type: integer
+        serialNumber:
+          type: string
+        price:
+          type: integer
+        isHave:
+          type: boolean
+        modeNumber:
+          type: integer
+        dustContainerVolume:
+          type: number
+          
+    FridgeModel:
+      type: object
+      required:
+        - name
+        - color
+        - size
+        - serialNumber
+        - price
+        - isHave
+        - compressorType
+        - doorNumber
+      properties:
+        name:
+          type: string
+        color:
+          type: string
+        size:
+          type: integer
+        serialNumber:
+          type: string
+        price:
+          type: integer
+        isHave:
+          type: boolean
+        doorNumber:
+          type: integer
+        compressorType:
+          type: string
