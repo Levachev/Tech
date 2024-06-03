@@ -10,7 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/appliances")
+@RequestMapping("/admin")
 public class AdminController {
 
     private final AdminService service;
